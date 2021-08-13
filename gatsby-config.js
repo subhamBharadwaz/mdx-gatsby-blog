@@ -2,28 +2,62 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "Subham Blog",
+    description:
+      "All about trending technologies react, gatsby, next.js and many more.",
+    image:
+      "https://res.cloudinary.com/dkitlfy13/image/upload/v1628779534/pexels-pixabay-261662_1_worel6.jpg",
   },
   plugins: [
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-image",
-    "gatsby-plugin-mdx",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
-    },
+    "gatsby-plugin-react-helmet",
+
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
-        path: "./src/pages/",
+        path: `${__dirname}/src/pages`,
       },
-      __key: "pages",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "posts",
+        path: `${__dirname}/src/posts`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-page-creator",
+      options: {
+        path: `${__dirname}/src/posts`,
+      },
+    },
+    "gatsby-remark-images",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 500,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+        defaultLayouts: {
+          posts: require.resolve("./src/components/post-layout.js"),
+        },
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/images`,
+      },
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 };
