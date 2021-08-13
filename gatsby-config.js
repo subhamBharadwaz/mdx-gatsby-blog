@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://mdx-gatsby-blog.vercel.app/",
     title: "Subham Blog",
     description:
       "All about trending technologies react, gatsby, next.js and many more.",
